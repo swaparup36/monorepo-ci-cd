@@ -8,8 +8,8 @@ on:
 jobs:
   uses: ubuntu-latest
   redeploy_everything:
+    runs-on: ubuntu-latest
     name: Deploying everything to staging
-
     steps:
       - name: SSH Into Server
       - run: |
