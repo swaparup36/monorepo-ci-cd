@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploying everything to staging
     steps:
-      - name: SSH Into Server
-      - run: |
+      name: SSH Into Server
+      run: |
           ssh -i ${{ secrets.SSH_KEY }} ubuntu@15.206.186.5
           cd monorepo-ci-cd/ && git pull origin main
           pnpm install
