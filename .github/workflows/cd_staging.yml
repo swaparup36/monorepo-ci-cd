@@ -24,8 +24,8 @@ jobs:
             cd monorepo-ci-cd/ && git pull origin main
             pnpm install
             pnpm run build
-            pm2 restart http-Server
-            pm2 restart ws-Server
+            pm2 restart http-server
+            pm2 restart ws-server
             pm2 restart next-app
 
         
