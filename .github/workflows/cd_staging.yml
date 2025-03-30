@@ -6,19 +6,18 @@ on:
       - main
 
 jobs:
-  uses: ubuntu-latest
   redeploy_everything:
     runs-on: ubuntu-latest
     name: Deploying everything to staging
     steps:
-      name: SSH Into Server
-      run: |
-          ssh -i ${{ secrets.SSH_KEY }} ubuntu@15.206.186.5
-          cd monorepo-ci-cd/ && git pull origin main
-          pnpm install
-          pnpm run build
-          pm2 restart http-Server
-          pm2 restart ws-Server
-          pm2 restart next-app
+      - name: SSH Into Server
+        run: |
+            ssh -i ${{ secrets.SSH_KEY }} ubuntu@15.206.186.5
+            cd monorepo-ci-cd/ && git pull origin main
+            pnpm install
+            pnpm run build
+            pm2 restart http-Server
+            pm2 restart ws-Server
+            pm2 restart next-app
 
         
