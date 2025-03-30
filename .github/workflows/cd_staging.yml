@@ -10,9 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploying everything to staging
     steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
       - name: SSH Into Server
-        run: |
-            ssh -i ${{ secrets.SSH_KEY }} ubuntu@15.206.186.5
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 15.206.186.5
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
             cd monorepo-ci-cd/ && git pull origin main
             pnpm install
             pnpm run build
